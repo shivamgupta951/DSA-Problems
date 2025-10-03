@@ -7,6 +7,7 @@
 
 public class prog11 {
     public static int[] TwoSum(int[] nums, int target) {
+        /* just using double loop to check! */
         int[] arr = new int[2];
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0, k = nums.length - 1; j <= k; j++, k--) {
