@@ -5,25 +5,44 @@
 */
 
 public class prog18 {
-    public static int maxProduct(int[] nums)
-    {
-        int maxproduct = nums[0];
-        int temp = nums[0];
-        for(int i=1; i<nums.length; i++)
-        {
-            temp = temp*nums[i];
-            if(temp>maxproduct) maxproduct = temp;
-            else if(temp<0)
-            {
-                temp=0;
+    /* fix code it contains error! */
+    public static int maxProduct(int[] nums) {
+        int maxproduct = Integer.MIN_VALUE;
+        int product = 1;
+        int neg = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < 0) {
+                if (neg == 0) {
+                    neg++;
+                    product = product * nums[i];
+                } else if (neg == 1) {
+                    neg--; // 0
+                    product = product * nums[i]; // positive value
+                    if (product > maxproduct)
+                        maxproduct = product;
+                }
+            } else if (nums[i] >= 0) {
+                if (neg == 0) {
+                    product = product * nums[i];
+                    if (product > maxproduct)
+                        maxproduct = product;
+                } else {
+                    product = nums[i];
+                    neg--;
+                }
+            }
+            if (product > maxproduct) {
+                maxproduct = product;
+            }
+            if (product==0) {
+                product=1;
             }
         }
         return maxproduct;
     }
 
-    public static void main(String args[])
-    {
-        int[] array = {-2,0,-1};
+    public static void main(String args[]) {
+        int[] array = { -2, 0, -4 };
         int output = maxProduct(array);
         System.out.println(output);
     }
