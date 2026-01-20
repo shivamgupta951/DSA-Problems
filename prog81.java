@@ -12,6 +12,7 @@ public class prog81 {
         mergeSort(arr, start, n);
         mergeSort(arr, n + 1, end);
         merge(arr, start, n, end);
+        //tail recursion
         return;
     }
 
